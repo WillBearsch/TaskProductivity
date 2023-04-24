@@ -1,0 +1,25 @@
+/* Colors */
+:root {
+    --accent1: #F1C40F;
+    --bg: #1E003D;
+}
+
+/* Page structure */
+#game_page {
+    background-color: var(--bg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 100vh;
+}
+
+canvas {
+    border: 1px solid var(--accent1);
+    display: block;
+    margin: 0 auto;
+}
+
+#inventory_page {
+    background-color: var(--bg);
+}
