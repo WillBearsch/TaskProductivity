@@ -7,7 +7,7 @@ class Inventory {
 		if (this.items[0]) {
 			console.log("You carry:");
 			this.items.forEach(inventory => {
-				console.log(`* ${inventory.desc}`);
+				console.log(`* ${inventory.name}:${inventory.desc}`);
 			});
 			return true;
 		}else{
