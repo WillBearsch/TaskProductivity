@@ -32,9 +32,6 @@ class Starfield {
             this.color = lerpColor(this.color, color(curLevel.color), STARFIELD_LERP);
         }
 
-        // Skip rendering stars if low graphics mode
-        if (!showStars) return;
-
         // Render stars
         for (let i = 0; i < this.stars.length; i++) {
             let s = this.stars[i];
