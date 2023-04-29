@@ -2,16 +2,16 @@
 const BOSS_GRACE_PERIOD = 120;
 const BOSS_SPAWN_DELAY = 120;
 const INVULN_TIME = 20;
-let   MAP_HEIGHT = 700;
+let   MAP_HEIGHT = 760;
 const MODEL_LINE_ALPHA = 127;
 const NUM_STARS = 300;
 const PLAYER_FIRE_RATE = 8;
 const PLAYER_HP = 20;
 const PLAYER_RADIUS = 3;
 const PLAYER_SPEED = 4;
-const SPAWN_GRACE_PERIOD = 60;
 const STARFIELD_LERP = 0.2;
 const STARFIELD_SPEED = 10;
+const UI_PANEL_HEIGHT = 60;
 const WORLD_CEILING = -50;
 
 // Background
@@ -20,13 +20,10 @@ let starfield;
 // Cooldowns
 let bossTime;
 let flashTime;
-let slowTime;
-let spawnTime;
 
 // Debug mode
 let blackStarfield = false;
 let showHitboxes = false;
-let showStars = true;
 
 // Entities
 let boss;
@@ -35,12 +32,13 @@ let pl;
 let ps;
 let walls;
 let items;
-let inv;
+let inv = new Inventory();
+let item_list = ['dualFire', 'tripleFire'];
+let item_weight = [ITEM['dualFire'].weight, ITEM['tripleFire'].weight];
+let boss_list = ['boss1', 'heavyBomber'];
 
 // Game state
 let curLevel;
-let level;
-let levelScore;
 let paused = false;
 let toSpawn;
 let toSpawnBoss;
@@ -55,6 +53,36 @@ function bossHealthBar() {
     noStroke();
     rectMode(CENTER);
     rect(width/2 - 0.5, 10, h * (width - 200), 10);
+}
+
+// Draw heart
+function drawHeart(x, y, empty) {
+    fill(empty ? 0 : '#D73C2C');
+    stroke(0, MODEL_LINE_ALPHA);
+    rectMode(CORNER);
+    rect(x, y, 20, 20);
+}
+
+// Draw player health
+function uiHealth() {
+    let empty = pl.maxHp - (pl.hp - 1);
+    for (let i = pl.maxHp; i >= 0; i--) {
+        drawHeart(20 + 30*i, height - UI_PANEL_HEIGHT + 20, --empty > 0);
+    }
+}
+
+// Draw the UI panel
+function uiPanel() {
+    // Draw grey rectangle
+    fill(48);
+    stroke(241, 196, 15);
+    rectMode(CORNER);
+    rect(0, height - UI_PANEL_HEIGHT, width, UI_PANEL_HEIGHT);
+
+    // Draw all UI panel elements
+    strokeWeight(2);
+    uiHealth();
+    strokeWeight(1);
 }
 
 // Clear all entities (except player)
@@ -91,21 +119,19 @@ function dt() {
 
 // Spawn a boss
 function spawnBoss() {
-    if (curLevel.boss) {
-        boss = new Boss(width/2, WORLD_CEILING);
-        applyTemplate(boss, BOSS[curLevel.boss]);
-        boss.init();
-    } else {
-        start();
-    }
+    boss = new Boss(width/2, WORLD_CEILING);
+    let type = boss_list[randInt()];
+    applyTemplate(boss, BOSS[type]);
+    boss.init();
 }
 
+// Spawn an item
 function spawnItem(x, y) {
     if (typeof x === 'undefined' || typeof y === 'undefined') {
         x = random(width);
         y = WORLD_CEILING;
     }
-    let type = randWeight(curLevel.item, curLevel.itemWeight);
+    let type = randWeight(item_list, item_weight);
     items.push(new Item(x, y, ITEM[type]));
 }
 
@@ -117,22 +143,18 @@ function spawnPlayer() {
 
 // Start the game
 function start() {
-    level = Math.floor(Math.random()*LEVEL.length);
-    curLevel = LEVEL[level];
+    curLevel = LEVEL[0];
     clearEntities();
     spawnPlayer();
     toSpawnBoss=true;
-    inv = new Inventory();
-    inv.addItem('test', 'this is a test');
-    inv.display();
 }
 
 /* Main p5.js functions */
-
 function setup() {
     // Ensure game can fit vertically inside screen
     let maxSize = MAP_HEIGHT + 2;
     let h = windowHeight > maxSize ? maxSize : windowHeight;
+    MAP_HEIGHT = h - UI_PANEL_HEIGHT - 2;
     let c = createCanvas(600, h - 2);
     c.parent('game');
 
@@ -152,11 +174,6 @@ function draw() {
     flashTime > 0 ? background(255) : background(starfield.bg);
     starfield.display();
 
-    // Spawn enemies or boss
-    if (!paused && spawnTime === 0) {
-        toSpawnBoss = true;
-    }
-
     // Update and draw all entities
     loopOver(items);
     loopOver(bullets);
@@ -167,6 +184,9 @@ function draw() {
 
     // Update all cooldowns
     cooldown();
+
+    // Draw UI panel
+    uiPanel();
 
     // Draw boss health bar
     if (boss) bossHealthBar();
