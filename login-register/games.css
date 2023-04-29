@@ -1,0 +1,180 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav .logo a {
+	color: #fff;
+	font-weight: bold;
+	font-size: 24px;
+	text-decoration: none;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	align-items: center;
+}
+
+nav ul li {
+	margin-right: 20px;
+}
+
+nav ul li a {
+	color: #fff;
+	text-decoration: none;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}
+
+section {
+	padding: 50px;
+	text-align: center;
+}
+
+section:nth-child(even) {
+	background-color: pink;
+}
+
+section h2 {
+	margin-bottom: 20px;
+}
+
+footer {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}
+
+/* Styles for the game section */
+#section3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  
+  /* Styles for each game */
+  .game {
+    width: 30%;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the game image */
+
+  
+  /* Styles for the game description */
+  .proj-description {
+    padding: 10px;
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  /* Styles for the game title */
+  .proj-description h2 {
+    margin: 10px 0;
+  }
+  
+  /* Styles for the game description text */
+  .proj-description p {
+    margin: 10px 0;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    #section3 {
+      flex-direction: column;
+    }
+    
+    .game {
+      width: 100%;
+    }
+  }
+
+  #image-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .image-container {
+    flex-basis: 30%;
+    display: inline-block;
+    width: 30%; /* adjust as needed */
+    margin: 10px; /* adjust as needed */
+    position: relative;
+    
+  }
+
+  #section3 .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px; ;
+    width: 300px;
+  }
+  
+  .image-container img {
+    width: 300px;
+    height: 250px;
+  }
+
+  
+  
+  .image-container button {
+    position: absolute;
+    bottom: 10px; /* adjust this value to position the button where you want */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: pink;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  button:hover {
+    background-color: #006B8F;
+  }
+  
+  .game-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  
+  
