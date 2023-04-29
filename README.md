@@ -7,3 +7,7 @@ Bullet hell game made with HTML5 and JS, using the p5js library.
 
 ### *Admin Controls*
 * H to show hit boxes
+
+
+### Credit
+https://github.com/rsaihe/bullethell
