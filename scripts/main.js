@@ -6,7 +6,7 @@ let   MAP_HEIGHT = 760;
 const MODEL_LINE_ALPHA = 127;
 const NUM_STARS = 300;
 const PLAYER_FIRE_RATE = 8;
-const PLAYER_HP = 20;
+const PLAYER_HP = 2;
 const PLAYER_RADIUS = 3;
 const PLAYER_SPEED = 4;
 const STARFIELD_LERP = 0.2;
@@ -35,7 +35,7 @@ let items;
 let inv = new Inventory();
 let item_list = ['dualFire', 'tripleFire'];
 let item_weight = [ITEM['dualFire'].weight, ITEM['tripleFire'].weight];
-let boss_list = ['boss1', 'heavyBomber'];
+let boss_list = ['boss_bounce', 'boss_bomb', 'boss_s'];
 
 // Game state
 let curLevel;
@@ -120,8 +120,8 @@ function dt() {
 // Spawn a boss
 function spawnBoss() {
     boss = new Boss(width/2, WORLD_CEILING);
-    let type = boss_list[randInt()];
-    applyTemplate(boss, BOSS[type]);
+    let type = boss_list[Math.floor(Math.random()*boss_list.length)];
+    applyTemplate(boss, BOSS['boss_s']);
     boss.init();
 }
 

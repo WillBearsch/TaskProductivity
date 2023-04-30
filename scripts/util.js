@@ -59,3 +59,29 @@ function randWeight(arr, weight) {
         if (r <= weightSum) return arr[i];
     }
 }
+
+// Show or hide element in html
+function show_hide(element) {
+    let show = document.getElementById(element);
+    if (show.style.visibility === 'hidden') {
+        show.style.visibility = 'visible';
+    }else{
+        show.style.visibility = 'hidden';
+    }
+}
+
+// Write text in html
+function writeMessage(msg, element) {
+    let txt = document.getElementById(element);
+    txt.innerHTML = msg;
+}
+
+// If a button was clicked or not
+function buttonClick(element) {
+    let check = document.getElementById(element);
+    if (check.style.visibility === 'hidden') {
+        return true;
+    }else{
+        return false;
+    }
+}

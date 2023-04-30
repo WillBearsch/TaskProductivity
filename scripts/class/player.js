@@ -35,7 +35,7 @@ class Player extends Ship {
 
     // Check for keypresses
     controls() {
-        // Movement (arrow keys)
+        // Movement (wasd and arrow keys)
         let diag = this.speed / sqrt(2);
         if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
             if (keyIsDown(UP_ARROW) || keyIsDown(87)) {

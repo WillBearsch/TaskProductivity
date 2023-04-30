@@ -14,7 +14,6 @@ ITEM.dualFire = {
         pl.fireRate = 10;
         pl.weapon = 'dualFire';
         inv.addItem('Dual Fire', 'Fire two shots.');
-        inv.display();
     }
 };
 
@@ -31,6 +30,5 @@ ITEM.tripleFire = {
         pl.fireRate = 8;
         pl.weapon = 'tripleFire';
         inv.addItem('Triple Fire', 'Fire three shots.');
-        inv.display();
     }
 };

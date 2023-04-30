@@ -30,8 +30,11 @@
 </head>
 <body id="game_page">
   <div id="game"></div>
-  <main>
-    <p id="level"></p>
-  </main>
+  <button id="tutorial_close" 
+          type="button" 
+          onclick="document.getElementById('tutorial').style.visibility='hidden';
+                   getElementById('tutorial_close').style.visibility='hidden'"
+          style="float: right; visibility: hidden">X</button>
+  <div id="tutorial" style="visibility: hidden"></div>
 </body>
 </html>

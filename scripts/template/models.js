@@ -36,21 +36,6 @@ MODEL.bullet.needle = function() {
 
 
 // Item models
-
-MODEL.item.health = function() {
-    // Draw base
-    fill(this.color);
-    stroke(0, MODEL_LINE_ALPHA);
-    ellipse(this.pos.x, this.pos.y, 12, 12);
-
-    // Draw cross
-    fill('#ECF0F1');
-    noStroke();
-    rectMode(RADIUS);
-    rect(this.pos.x, this.pos.y, 8, 3);
-    rect(this.pos.x, this.pos.y, 3, 8);
-};
-
 MODEL.item.square = function() {
     fill(this.color);
     stroke(0, MODEL_LINE_ALPHA);
@@ -126,121 +111,6 @@ MODEL.ship.basic = function(isPlayer) {
 
     pop();
 };
-
-MODEL.ship.bomber = function(isPlayer) {
-    push();
-    translate(this.pos.x, this.pos.y);
-    if (!isPlayer) rotate(180);
-
-    // Exhaust
-    fill('#E74C3C');
-    noStroke();
-    triangle(-3, 14, 3, 14, random(-2, 2), random(20, 24));
-
-    // Thruster
-    fill('#7C8A99');
-    stroke(0, MODEL_LINE_ALPHA);
-    strokeWeight(2);
-    rectMode(RADIUS);
-    rect(-0.5, 3.5, 6, 10);
-
-    // Front fins
-    fill('#BDC3C7');
-    triangle(2, 4, 2, -4, 20, -8);
-    triangle(-2, 4, -2, -4, -20, -8);
-
-    // Rear fins
-    fill('#ACBAC9');
-    triangle(2, -2, 2, 11, 24, 16);
-    triangle(-2, -2, -2, 11, -24, 16);
-
-    // Canopy
-    fill(this.color);
-    ellipse(0, 0, 6, 8);
-
-    pop();
-};
-
-MODEL.ship.ricochet = function(isPlayer) {
-    push();
-    translate(this.pos.x, this.pos.y);
-    if (!isPlayer) rotate(180);
-
-    // Exhaust
-    fill('#E74C3C');
-    noStroke();
-    triangle(-6, 22, 6, 22, random(-2, 2), random(28, 32));
-    triangle(-26.5, 14, -14.5, 14, random(-18.5, -22.5), random(20, 24));
-    triangle(26.5, 14, 14.5, 14, random(18.5, 22.5), random(20, 24));
-
-    // Thrusters
-    fill('#657576');
-    stroke(0, MODEL_LINE_ALPHA);
-    strokeWeight(2);
-    rectMode(CENTER);
-    rect(0, 15.5, 14, 16);
-    rect(-20.5, 12.5, 14, 8);
-    rect(20.5, 12.5, 14, 8);
-
-    // Wings
-    fill('#7F8C8D');
-    beginShape();
-    vertex(-2, 8);
-    vertex(-2, -12);
-    vertex(-28, -2);
-    vertex(-38, 14);
-    endShape(CLOSE);
-    beginShape();
-    vertex(2, 8);
-    vertex(2, -12);
-    vertex(28, -2);
-    vertex(38, 14);
-    endShape(CLOSE);
-    }
-
-    // Barrel
-    fill('#ACBAC9');
-    rect(-26, 0, 10, 4);
-
-    // Connector
-    fill('#657576');
-    rect(-16, 0, 4, 7);
-
-    // Nozzle
-    fill('#657576');
-    rect(-36, 0, 3, 6);
-
-    pop();
-
-
-    // Turret body
-    fill('#7F8C8D');
-    ellipse(0, 0, 16, 16);
-
-    // Thruster
-    fill('#7C8A99');
-    rect(0, -12, 10, 5);
-
-    // Frame
-    fill('#ACBAC9');
-    beginShape();
-    vertex(-19, -3);
-    vertex(19, -3);
-    vertex(16, -12);
-    vertex(-16, -12);
-    endShape(CLOSE);
-
-    // Border
-    fill('#657576');
-    rect(0, 0, 21, 3);
-
-    // Canopy
-    fill(this.color);
-    ellipse(0, 0, 6, 8);
-
-    pop();
-};
-
 
 // Boss models
 MODEL.ship.boss1 = function(isPlayer) {
@@ -330,3 +200,107 @@ MODEL.ship.heavyBomber = function(isPlayer) {
 
     pop();
 };
+
+MODEL.ship.boss_tutorial = function(isPlayer) {
+    push();
+    translate(this.pos.x, this.pos.y);
+    if (!isPlayer) rotate(180);
+
+    // Exhaust
+    fill('#E74C3C');
+    noStroke();
+    triangle(3, 32, 8, 32, random(2, 8), random(46, 50));
+    triangle(-3, 32, -8, 32, random(-2, -8), random(46, 50));
+
+    // Thrusters
+    fill('#7C8A99');
+    stroke(0, MODEL_LINE_ALPHA);
+    strokeWeight(2);
+    rectMode(RADIUS);
+    rect(5, 30, 4, 3);
+    rect(-5, 30, -4, 3);
+
+    // Side wings
+    fill('#7F8C8D');
+    beginShape();
+        vertex(30, -15);
+        vertex(4, -10);
+        vertex(0, 15);
+    endShape(CLOSE);
+    beginShape();
+        vertex(-30, -15);
+        vertex(-4, -10);
+        vertex(0, 15);
+    endShape(CLOSE);
+
+    // Front wings
+    fill('#7F8C8D');
+    triangle(2, 15, 4, -38, 24, 15);
+    triangle(-2, 15, -4, -38, -24, 15);
+
+    // Back part
+    fill('#7F8C8D');
+    arc(0, 15, 24, 15, 20, 160, CHORD)
+
+    // Back wings
+    fill('#95A5A6');
+    triangle (-30, 25, 0, -5, 30, 25);
+
+    // Body
+    fill('#04c92c');
+    ellipse(0, 4, 15, 17);
+
+    pop();
+};
+
+MODEL.ship.boss_s = function(isPlayer) {
+    push();
+    translate(this.pos.x, this.pos.y);
+    if (!isPlayer) rotate(180);
+
+    // Exhaust
+    fill('#E74C3C');
+    noStroke();
+    triangle(3, 32, 8, 32, random(2, 8), random(46, 50));
+    triangle(-3, 32, -8, 32, random(-2, -8), random(46, 50));
+
+    // Thrusters
+    fill('#7C8A99');
+    stroke(0, MODEL_LINE_ALPHA);
+    strokeWeight(2);
+    rectMode(RADIUS);
+    rect(5, 30, 4, 3);
+    rect(-5, 30, -4, 3);
+
+    // Side wings
+    fill('#7F8C8D');
+    beginShape();
+        vertex(30, -15);
+        vertex(4, -10);
+        vertex(0, 15);
+    endShape(CLOSE);
+    beginShape();
+        vertex(-30, -15);
+        vertex(-4, -10);
+        vertex(0, 15);
+    endShape(CLOSE);
+
+    // Front wings
+    fill('#7F8C8D');
+    triangle(2, 15, 4, -38, 24, 15);
+    triangle(-2, 15, -4, -38, -24, 15);
+
+    // Back part
+    fill('#7F8C8D');
+    arc(0, 15, 24, 15, 20, 160, CHORD)
+
+    // Back wings
+    fill('#95A5A6');
+    triangle (-30, 25, 0, -5, 30, 25);
+
+    // Body
+    fill('#04c92c');
+    ellipse(0, 4, 15, 17);
+
+    pop();
+}

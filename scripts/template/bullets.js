@@ -192,3 +192,10 @@ BULLET.small = {
     // Physics
     r: 2
 };
+
+BULLET.regular = {
+    // Display
+    color: '#2ECC71',
+    // Physics
+    r: 8,
+};
