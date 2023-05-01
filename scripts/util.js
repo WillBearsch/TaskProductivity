@@ -101,7 +101,3 @@ function buttonClick(element) {
         return false;
     }
 }
-
-function btnClick() {
-    return true;
-}

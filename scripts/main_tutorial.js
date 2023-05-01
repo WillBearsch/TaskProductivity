@@ -31,7 +31,7 @@ let items;
 let inv = new Inventory();
 let item_list = ['dualFire', 'tripleFire'];
 let item_weight = [ITEM['dualFire'].weight, ITEM['tripleFire'].weight];
-let boss_list = ['boss_bounce', 'boss_bomb', 'boss_s'];
+let boss_list = ['boss_tutorial'];
 
 // Game state
 let curLevel;
