@@ -6,6 +6,46 @@ import { RiCheckboxCircleLine } from 'react-icons/ri';
 
 
 function Task({ tasks, completeTask, removeTask, updateTask}) {
+    const [timer, setTimer] = useState(0);
+
+    const [intervalId, setIntervalId] = useState(null);
+
+    /*
+    const startTimer = () => {
+        const id = setInterval(() => {
+            setTimer(prev => prev + 1);
+        }, 1000);
+        setIntervalId(null);
+    };
+
+    const stopTimer = () => {
+        clearInterval(intervalId);
+        setTimer(0);
+        setIntervalId(null);
+    };
+
+    const handleCompleteTask = id => {
+        completeTask(id);
+        stopTimer();
+    };
+
+    useEffect(() => {
+        if (tasks.some(task => task.isComplete) && intervalId) {
+            startTimer();
+        } else if (tasks.every(task => !task.isComplete) && !intervalId) {
+            startTimer();
+        }
+    }, [tasks, intervalId]);
+
+    const formatTime = time => {
+        const hours = Math.floor(time / 3600).toString().padStart(2, '0');
+        const minutes = Math.floor((time % 3600) / 60).toString().padStart(2, '0');
+        const seconds = (time % 60).toString().padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
+    };
+
+*/
+
     const [edit, setEdit] = useState({
         id: null,
         value: '',
@@ -77,8 +117,8 @@ function Task({ tasks, completeTask, removeTask, updateTask}) {
                       <RiCheckboxCircleLine onClick={() => completeTask(task.id)}
                       className='complete-icon'
                       />
+                      
 
-  
                   </div>
   
               </div>

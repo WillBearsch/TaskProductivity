@@ -75,7 +75,8 @@ function TaskForm(props) {
           />
           <button className="task-button" type="submit">Add Task</button>
           </>
-          )}
+          )
+          }
 
         
     </form>
