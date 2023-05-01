@@ -23,6 +23,22 @@ function emitBullets(x, y, baseAngle, angles, minSpeed, maxSpeed, template, from
     }
 }
 
+// Wave of bullets for BULLET.regular
+function waveBullets(y, gap, minSpeed, maxSpeed, template, fromPlayer) {
+    let a = 10;
+    for (let i = 0; i < 30; i++) {
+        if (i != gap) {
+            let b = new Bullet(a, y, 90, random(minSpeed, maxSpeed), fromPlayer);
+            applyTemplate(b, template);
+            b.init();
+            bullets.push(b);
+            a += 20;
+        }else{
+            a += 60;
+        }
+    }
+}
+
 // Loop over an array of entities
 function loopOver(arr) {
     for (let i = arr.length - 1; i >= 0; i--) {

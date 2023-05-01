@@ -34,12 +34,6 @@ MODEL.bullet.needle = function() {
     pop();
 };
 
-MODEL.bullet.wave = function() {
-    fill(this.color);
-    stroke(0, MODEL_LINE_ALPHA);
-    rect(this.pos.x, this.pos.y, this.pos.x + 50, this.pos.y);
-}
-
 
 // Item models
 MODEL.item.square = function() {

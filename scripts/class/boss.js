@@ -79,11 +79,6 @@ class Boss extends Ship {
         show_hide("reward_image")
     }
 
-    // Drop an item
-    dropItem() {
-        spawnItem(this.pos.x, this.pos.y);
-    }
-
     // Trigger next stage of boss fight
     switchStage() {
         this.healthCooldown = -1;

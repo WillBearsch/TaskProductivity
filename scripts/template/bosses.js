@@ -460,6 +460,7 @@ BOSS.boss_s = {
     stages: {
         enter: {
             nextStage: 'rotating_bullets',
+            //nextStage: 'rotating_bullets',
             ai(b) {
                 // Stop moving forward once in position
                 if (b.pos.y >= MAP_HEIGHT/8) {
@@ -474,7 +475,7 @@ BOSS.boss_s = {
             }
         },
         rotating_bullets: {
-            nextStage: 'anger',
+            nextStage: 'wait',
             timeLimit: 1500,
             ai(b) {
                 b.fire();
@@ -546,37 +547,39 @@ BOSS.boss_s = {
                 b.emitters = [e1, e2, e3, e4];
             }
         },
-        anger: {
+        wait: {
             nextStage: 'wave',
+            timeLimit: 600,
             ai(b) {
-                // Force player back
-                if (pl.pos.y < MAP_HEIGHT * 3/4) {
-                    pl.pos.y = lerp(pl.pos.y, MAP_HEIGHT * 3/4, 0.05*dt());
-                }
-
-                // Move to next stage once positioned correctly
-                if (b.pos.y >= MAP_HEIGHT/8) {
-                    b.pos.y = MAP_HEIGHT/8;
-                    b.vel.y = 0;
-                    b.switchStage();
-                }
-            },
-            init(b) {
-                b.speed = 1;
-                b.vel = createVector(0, b.speed);
+                b.pos.x = lerp(b.pos.x, width/2, 0.05 * dt());
             }
         },
         wave: {
-            nextStage: 'catch_the_fruit',
+            nextStage: 'clear',
+            timeLimit: 1000, 
+            ai(b) {
+                b.fire();
+            },
+            attack(b) {
+                let a = randInt(29);
+                waveBullets(b.pos.y, a, 3, 3, BULLET.regular);
+                emitBullets(b.pos.x, b.pos.y, 90, [30, 60, 120, 150, 210, 240, 270, 300], 4, 4, BULLET.ricochet2);
+                emitBullets(600, b.pos.y, 90, [30, 60, 120, 150], 4, 4, BULLET.ricochet2);
+                emitBullets(0, b.pos.y, 90, [30, 60, 120, 150], 4, 4, BULLET.ricochet2);
+            },
+            init(b) {
+                b.fireRate = 180;
+            }
         },
-        catch_the_fruit: {
-
+        clear: {
+            nextStage: 'rotating_bullets', 
+            timeLimit: 60
         }
     },
     // Display
     model: MODEL.ship.boss_s,
     // Stats
-    hp: 560,
+    hp: 500,
     // Methods
     onHitLeft() {
         this.pos.x = this.mapLeft + this.r * this.edgeRadius;

@@ -76,7 +76,7 @@ BULLET.needle = {
 
 BULLET.ricochet = {
     // Display
-    color: '#2ECC71',
+    color: '#2f46c4',
     // Physics
     r: 8,
     // Methods
@@ -119,7 +119,7 @@ BULLET.ricochet = {
 
 BULLET.ricochet2 = {
     // Display
-    color: '#2ECC71',
+    color: '#2f46c4',
     // Physics
     r: 8,
     // Methods
@@ -205,12 +205,4 @@ BULLET.large = {
     color: '#478f0d',
     // Physics
     r: 16
-};
-
-BULLET.wave = {
-    // Display
-    color: '#ffff',
-    model: MODEL.bullet.wave,
-    // Physics
-    r: 8
 };
