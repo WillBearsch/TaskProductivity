@@ -114,6 +114,11 @@ function dt() {
     return 1;
 }
 
+// Return to the game page once the user claims the reward
+document.getElementById("claim_reward").addEventListener("click", function() {
+    window.location.href = "Games.html";
+});
+
 // Spawn a boss
 function spawnBoss() {
     boss = new Boss(width/2, WORLD_CEILING);
