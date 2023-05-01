@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import TaskForm from './TaskForm'
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
+import { RiCheckboxCircleLine } from 'react-icons/ri';
 
 
 function Task({ tasks, completeTask, removeTask, updateTask}) {
@@ -73,6 +74,10 @@ function Task({ tasks, completeTask, removeTask, updateTask}) {
                       <TiEdit onClick={() => setEdit({id: task.id, value: task.text})}
                               className='edit-icon'
                       />
+                      <RiCheckboxCircleLine onClick={() => completeTask(task.id)}
+                      className='complete-icon'
+                      />
+
   
                   </div>
   

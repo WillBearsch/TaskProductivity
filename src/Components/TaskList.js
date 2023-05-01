@@ -31,8 +31,6 @@ function TaskList() {
 
     }
 
-
-
     const completeTask = id => {
         let updatedTasks = tasks.map(task => {
             if(task.id === id) { 

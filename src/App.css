@@ -21,8 +21,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 2500px;
-  min-height: 1300px;
+  width: 1600px;
+  min-height: 900px;
   background: #161a2b;
   text-align: center;
   margin: 128px auto;
