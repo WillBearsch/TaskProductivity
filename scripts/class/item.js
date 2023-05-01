@@ -6,9 +6,6 @@ class Item extends Entity {
         this.model = MODEL.item.square;
         this.type = 'item';
 
-        // Rarity
-        this.rarity = 'rare';
-
         // Map boundaries
         this.mapTop = WORLD_CEILING;
 

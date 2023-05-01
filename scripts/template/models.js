@@ -34,6 +34,12 @@ MODEL.bullet.needle = function() {
     pop();
 };
 
+MODEL.bullet.wave = function() {
+    fill(this.color);
+    stroke(0, MODEL_LINE_ALPHA);
+    rect(this.pos.x, this.pos.y, this.pos.x + 50, this.pos.y);
+}
+
 
 // Item models
 MODEL.item.square = function() {
@@ -43,6 +49,12 @@ MODEL.item.square = function() {
     rect(this.pos.x - 0.5, this.pos.y - 0.5, this.r/2, this.r/2);
 };
 
+MODEL.item.box = function() {
+    fill('#8f5215');
+    stroke(0, MODEL_LINE_ALPHA);
+    rectMode(RADIUS);
+    rect(this.pos.x - 0.5, this.pos.y - 0.5, this.r/2, this.r/2);
+};
 
 // Particle models 
 MODEL.particle.square = function() {
@@ -58,6 +70,7 @@ MODEL.particle.square = function() {
     pop();
 };
 
+
 // Ship models
 MODEL.ship.basic = function(isPlayer) {
     push();
@@ -67,6 +80,7 @@ MODEL.ship.basic = function(isPlayer) {
     fill(255, 0, 0, 4);
     for(i = 0; i < 14; i++){
         ellipse(0, 1, i*3);
+        noStroke();
     }
 
     // Exhaust
@@ -111,6 +125,7 @@ MODEL.ship.basic = function(isPlayer) {
 
     pop();
 };
+
 
 // Boss models
 MODEL.ship.boss1 = function(isPlayer) {

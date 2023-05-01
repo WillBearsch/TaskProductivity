@@ -28,7 +28,7 @@ BULLET.bomb = {
     }
 };
 
-BULLET.large = {
+BULLET.large_expl = {
     // Physics
     r: 16,
     // Methods
@@ -197,5 +197,20 @@ BULLET.regular = {
     // Display
     color: '#2ECC71',
     // Physics
-    r: 8,
+    r: 8
+};
+
+BULLET.large = {
+    // Display
+    color: '#478f0d',
+    // Physics
+    r: 16
+};
+
+BULLET.wave = {
+    // Display
+    color: '#ffff',
+    model: MODEL.bullet.wave,
+    // Physics
+    r: 8
 };

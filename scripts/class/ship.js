@@ -47,13 +47,6 @@ class Ship extends Entity {
     // Display on the canvas
     display() {
         this.model();
-        
-        // Display hitbox
-        if (showHitboxes) {
-            fill(255, 63);
-            stroke(255);
-            ellipse(this.pos.x, this.pos.y, this.r, this.r);
-        }
     }
 
     // Create explosion particle effect

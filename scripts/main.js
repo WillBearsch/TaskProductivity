@@ -21,10 +21,6 @@ let starfield;
 let bossTime;
 let flashTime;
 
-// Debug mode
-let blackStarfield = false;
-let showHitboxes = false;
-
 // Entities
 let boss;
 let bullets;
@@ -35,13 +31,17 @@ let items;
 let inv = new Inventory();
 let item_list = ['dualFire', 'tripleFire'];
 let item_weight = [ITEM['dualFire'].weight, ITEM['tripleFire'].weight];
-let boss_list = ['boss_bounce', 'boss_bomb', 'boss_s'];
+let boss_list = ['boss_bounce', 'boss_bomb'];
 
 // Game state
 let curLevel;
 let paused = false;
 let toSpawn;
 let toSpawnBoss;
+
+// Button tutorial
+var clicked = true;
+
 
 // Display a health bar for a boss
 function bossHealthBar() {
@@ -121,7 +121,7 @@ function dt() {
 function spawnBoss() {
     boss = new Boss(width/2, WORLD_CEILING);
     let type = boss_list[Math.floor(Math.random()*boss_list.length)];
-    applyTemplate(boss, BOSS['boss_s']);
+    applyTemplate(boss, BOSS[type]);
     boss.init();
 }
 
@@ -141,12 +141,20 @@ function spawnPlayer() {
     pl.init();
 }
 
+// Check if tutorial button was clicked
+document.getElementById('tutorial-btn').addEventListener("click", function() {
+    clicked = true;
+});
+
 // Start the game
 function start() {
     curLevel = LEVEL[0];
     clearEntities();
     spawnPlayer();
-    toSpawnBoss=true;
+    if(clicked) {
+        boss_list = ['boss_tutorial'];
+    }
+    toSpawnBoss = true;
 }
 
 /* Main p5.js functions */
@@ -202,9 +210,6 @@ function draw() {
 }
 
 function keyPressed() {
-    // Toggle hitbox display
-    if (key === 'H') showHitboxes = !showHitboxes;
-
     // Pause
     if (key === 'P') paused = !paused;
 }

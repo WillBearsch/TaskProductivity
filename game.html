@@ -25,7 +25,7 @@
   <script src="scripts/class/player.js" defer></script>
   <script src="scripts/class/starfield.js" defer></script>
   <script src="scripts/class/wall.js" defer></script>
-  <script src="scripts/inventory/inventory.js" defer></script>
+  <script src="scripts/class/inventory.js" defer></script>
   <script src="scripts/main.js" defer></script>
 </head>
 <body id="game_page">
@@ -36,5 +36,13 @@
                    getElementById('tutorial_close').style.visibility='hidden'"
           style="float: right; visibility: hidden">X</button>
   <div id="tutorial" style="visibility: hidden"></div>
+  <button id="claim_reward"
+          type="button"
+          onclick="document.getElementById('reward').style.visibility='hidden';
+                   getElementById('claim_reward').style.visibility='hidden';
+                   document.getElementById('reward_image').style.visibility='hidden'"
+          style="visibility: hidden">Claim reward</button>
+  <div id="reward" style="visibility: hidden"></div>
+  <img id="reward_image" src="assets/Chest.png" alt="Chest.png" style="visibility: hidden">
 </body>
 </html>

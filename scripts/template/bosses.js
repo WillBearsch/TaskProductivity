@@ -1,5 +1,37 @@
 const BOSS = {};
 
+BOSS.boss_test = {
+    nextStage:'punching_bag',
+    stages: {
+        punching_bag: {
+            ai(b) {
+                if (b.pos.y >= MAP_HEIGHT/8) {
+                    b.pos.y = MAP_HEIGHT/8;
+                    b.vel.y = 0;
+                }
+            },
+            init(b) {
+                b.speed = 1;
+                b.vel = createVector(0, b.speed);
+            }
+        }
+    },
+    // Display
+    color: '#009B90',
+    model: MODEL.ship.boss1,
+    // Stats
+    hp: 20,
+    // Methods
+    onHitLeft() {
+        this.pos.x = this.mapLeft + this.r * this.edgeRadius;
+        this.vel.x *= -1;
+    },
+    onHitRight() {
+        this.pos.x = this.mapRight - this.r * this.edgeRadius;
+        this.vel.x *= -1;
+    }
+};
+
 BOSS.boss_bounce = {
     // AI
     nextStage: 'enter',
@@ -264,7 +296,7 @@ BOSS.boss_bomb = {
             },
             attack(b) {
                 let a = random(30, 150);
-                emitBullets(b.pos.x, b.pos.y, a, [0], 4, 5, BULLET.large);
+                emitBullets(b.pos.x, b.pos.y, a, [0], 4, 5, BULLET._expl);
                 
                 if (random() < 0.1) {
                     let a = random(30, 150);
@@ -427,13 +459,8 @@ BOSS.boss_s = {
     nextStage: 'enter',
     stages: {
         enter: {
-            nextStage: 'pattern_1',
+            nextStage: 'rotating_bullets',
             ai(b) {
-                // Force player back
-                if (pl.pos.y < MAP_HEIGHT * 3/4) {
-                    pl.pos.y = larp(pl.pos.y, MAP_HEIGHT * 3/4, 0.05*dt());
-                }
-
                 // Stop moving forward once in position
                 if (b.pos.y >= MAP_HEIGHT/8) {
                     b.pos.y = MAP_HEIGHT/8;
@@ -446,9 +473,9 @@ BOSS.boss_s = {
                 b.vel = createVector(0, b.speed);
             }
         },
-        pattern_1: {
-            nextStage: 'pattern_2',
-            timeLImit: 1200,
+        rotating_bullets: {
+            nextStage: 'anger',
+            timeLimit: 1500,
             ai(b) {
                 b.fire();
             },
@@ -458,7 +485,7 @@ BOSS.boss_s = {
                 }
             },
             finish(b) {
-                // KIll emitters
+                // Kill emitters
                 for (let i = 0; i < b.emitters.length; i++) {
                     b.emitters[i].dead = true;
                 }
@@ -469,11 +496,13 @@ BOSS.boss_s = {
                 b.fireRate = 0;
 
                 // Create emitters
-                let e1 = new Emitter(-200, 0, b);
-                let e2 = new Emitter(200, 0, b);
+                let e1 = new Emitter(0, 0, b);
+                let e2 = new Emitter(0, 0, b);
+                let e3 = new Emitter(-300, 615, b);
+                let e4 = new Emitter(300, 615, b);
                 applyTemplate(e1, {
                     // Misc
-                    bulletTemplate: BULLET.basic,
+                    bulletTemplate: BULLET.large,
                     fireRate: 60,
                     angles: [0, 60, 120, 180, 240, 300],
                     angVel: 10,
@@ -496,14 +525,58 @@ BOSS.boss_s = {
                     maxSpeed: 1,
                     minSpeed: 1
                 });
-                b.emitters = [e1, e2];
+                applyTemplate(e3, {
+                    // Misc
+                    bulletTemplate: BULLET.regular,
+                    fireRate: 60,
+                    angles: [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300],
+                    angVel: 20,
+                    maxSpeed: 1,
+                    minSpeed: 1
+                });
+                applyTemplate(e4, {
+                    // Misc
+                    bulletTemplate: BULLET.regular,
+                    fireRate: 60,
+                    angles: [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300],
+                    angVel: -20,
+                    maxSpeed: 1,
+                    minSpeed: 1
+                });
+                b.emitters = [e1, e2, e3, e4];
             }
+        },
+        anger: {
+            nextStage: 'wave',
+            ai(b) {
+                // Force player back
+                if (pl.pos.y < MAP_HEIGHT * 3/4) {
+                    pl.pos.y = lerp(pl.pos.y, MAP_HEIGHT * 3/4, 0.05*dt());
+                }
+
+                // Move to next stage once positioned correctly
+                if (b.pos.y >= MAP_HEIGHT/8) {
+                    b.pos.y = MAP_HEIGHT/8;
+                    b.vel.y = 0;
+                    b.switchStage();
+                }
+            },
+            init(b) {
+                b.speed = 1;
+                b.vel = createVector(0, b.speed);
+            }
+        },
+        wave: {
+            nextStage: 'catch_the_fruit',
+        },
+        catch_the_fruit: {
+
         }
     },
     // Display
     model: MODEL.ship.boss_s,
     // Stats
-    hp: 380,
+    hp: 560,
     // Methods
     onHitLeft() {
         this.pos.x = this.mapLeft + this.r * this.edgeRadius;

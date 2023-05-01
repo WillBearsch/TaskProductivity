@@ -72,8 +72,11 @@ class Boss extends Ship {
     // Events
     onKilled() {
         bullets = [];
-        this.dropItem();
         this.explode();
+        writeMessage("Congratulations! Here is your reward.", "reward");
+        show_hide("reward");
+        show_hide("claim_reward");
+        show_hide("reward_image")
     }
 
     // Drop an item
