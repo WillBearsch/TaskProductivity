@@ -1,0 +1,94 @@
+class Player extends Ship {
+    constructor(x, y) {
+        super(x, y);
+
+        // Cooldowns
+        this.invulnTime = 0;
+
+        // Display
+        this.color = '#19B5FE';
+
+        // Misc
+        this.type = 'player';
+
+        // Physics
+        this.r = PLAYER_RADIUS;
+
+        // Stats
+        this.fireRate = PLAYER_FIRE_RATE;
+        this.hp = PLAYER_HP;
+        this.speed = PLAYER_SPEED;
+        this.weapon = 'basic';
+    }
+
+    // All operations to do per tick
+    act() {
+        if (!paused) this.controls();
+        super.act();
+        this.fire();
+    }
+
+    // The attack being used when firing
+    attack() {
+        WEAPON[this.weapon](this);
+    }
+
+    // Check for keypresses
+    controls() {
+        // Movement (wasd and arrow keys)
+        let diag = this.speed / sqrt(2);
+        if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+            if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+                this.vel = createVector(diag, -diag);
+            } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+                this.vel = createVector(diag, diag);
+            } else {
+                this.vel = createVector(this.speed, 0);
+            }
+        } else if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+            if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+                this.vel = createVector(-diag, -diag);
+            } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+                this.vel = createVector(-diag, diag);
+            } else {
+                this.vel = createVector(-this.speed, 0);
+            }
+        } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+            this.vel = createVector(0, this.speed);
+        } else if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+            this.vel = createVector(0, -this.speed);
+        } else {
+            this.vel.mult(0);
+        }
+    }
+
+    // Update all cooldowns
+    cooldown() {
+        super.cooldown();
+        if (this.invulnTime > 0) this.invulnTime -= dt();
+        if (this.invulnTime < 0) this.invulnTime = 0;
+    }
+
+    // Deal damage
+    damage() {
+        if (this.invulnTime > 0) return;
+        this.invulnTime = INVULN_TIME;
+        super.damage();
+    }
+
+    // Display on the canvas
+    display() {
+        this.model(true);
+    }
+
+    // Events
+    onDeath() {
+        start();
+    }
+    onHitBottom() {
+        this.pos.y = this.mapBottom - this.r * this.edgeRadius;
+    }
+    onHitTop() {
+        this.pos.y = this.mapTop + this.r * this.edgeRadius;
+    }
+}
