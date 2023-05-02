@@ -296,7 +296,7 @@ BOSS.boss_bomb = {
             },
             attack(b) {
                 let a = random(30, 150);
-                emitBullets(b.pos.x, b.pos.y, a, [0], 4, 5, BULLET._expl);
+                emitBullets(b.pos.x, b.pos.y, a, [0], 4, 5, BULLET.large_expl);
                 
                 if (random() < 0.1) {
                     let a = random(30, 150);
