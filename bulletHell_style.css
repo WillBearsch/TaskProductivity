@@ -1,0 +1,103 @@
+/* Colors */
+:root {
+    --accent1: #F1C40F;
+    --bg: #1E003D;
+    --tutorial_bg: rgba(163, 0, 152, .4);
+    --close: rgba(82, 0, 76, 1);
+}
+
+/* Page structure */
+#game_page {
+    background-color: var(--bg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 100vh;
+}
+
+canvas {
+    border: 1px solid var(--accent1);
+    display: block;
+    margin: 0 auto;
+}
+
+#tutorial {
+    /* Display */
+    background-color: var(--tutorial_bg);
+    border: 1px solid var(--accent1);
+    width: 500px;
+    min-height: 50px;
+    overflow: hidden;
+    position: absolute;
+    top: 30%;
+    left: 9%;
+
+    /* Text */
+    font-weight: bold;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+#tutorial_close {
+    /* Display */
+    background-color: var(--close);
+    border: 1px solid var(--accent1);
+    position: absolute;
+    top: 28%;
+    left: 88.7%;
+
+    /* Text */
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+#reward {
+    /* Display */
+    background-color: var(--tutorial_bg);
+    border: 1px solid var(--accent1);
+    width: 500px;
+    min-height: 180px;
+    overflow: hidden;
+    position: absolute;
+    top: 30%;
+    left: 9%;
+
+    /* Text */
+    font-weight: bold;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+#claim_reward {
+    /* Display */
+    background-color: var(--close);
+    border: 1px solid var(--accent1);
+    position: absolute;
+    top: 50%;
+    left: 42%;
+
+    /* Text */
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+#reward_image {
+    /* Display */
+    background-color: var(--close);
+    position: absolute;
+    top: 35%;
+    left: 38%;
+}
