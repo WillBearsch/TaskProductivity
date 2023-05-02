@@ -11,11 +11,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(
-    90deg,
-    rgba(48, 16, 255, 1) 0%,
-    rgba(100, 115, 255, 1) 100%
-  );
+  background:  rgb(107, 39, 107) 100%
+  
 }
 .App {
   display: flex;
@@ -23,7 +20,7 @@ body {
   justify-content: start;
   width: 1600px;
   min-height: 900px;
-  background: #161a2b;
+  background: hwb(0 9% 90%);
   text-align: center;
   margin: 128px auto;
   border-radius: 10px;
@@ -48,7 +45,7 @@ h1 {
 .task-input {
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
-  border: 2px solid #5d0cff;
+  border: 2px solid #3c1747;
   outline: none;
   width: 320px;
   background: transparent;
@@ -67,7 +64,7 @@ h1 {
   outline: none;
   background: linear-gradient(
     90deg,
-    rgba(93, 12, 255, 1) 0%,
+    rgb(206, 12, 255) 0%,
     rgba(155, 0, 250, 1) 100%
   );
   color: #fff;
@@ -81,8 +78,8 @@ h1 {
 .task-button.edit {
   background: linear-gradient(
     90deg,
-    rgba(20, 159, 255, 1) 0%,
-    rgba(17, 122, 255, 1) 100%
+    rgb(206, 12, 255) 0%,
+    rgba(155, 0, 250, 1) 100%
   );
   padding: 16px 22px;
 }
@@ -124,6 +121,10 @@ h1 {
   display: flex;
   flex-direction: row;
   position: relative;
+}
+
+.search-bar {
+  background-color: transparent;
 }
 
 .task-row {

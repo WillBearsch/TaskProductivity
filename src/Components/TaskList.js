@@ -44,7 +44,7 @@ function TaskList() {
 
   return (
     <div>
-        <h1>What's the Plan for Today?</h1>
+        <h1>What Tasks Do You Have Today?</h1>
         <TaskForm onSubmit={addTask} />
         <Task tasks={tasks} completeTask={completeTask} removeTask={removeTask} updateTask={updateTask}/>
     </div>
