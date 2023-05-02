@@ -83,7 +83,7 @@ class Player extends Ship {
 
     // Events
     onDeath() {
-        start();
+        window.location.href = "Games.php";
     }
     onHitBottom() {
         this.pos.y = this.mapBottom - this.r * this.edgeRadius;
