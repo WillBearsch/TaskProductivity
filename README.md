@@ -13,6 +13,10 @@ Made with HTML5 and JS, using the p5.js library.
 * WASD or ARROW KEYS to move
 * P to pause
 
+## **Quiz**
+
+## **Tic Tac Toe**
+
 
 # Credit
 * [rsaihe's bullet hell game](https://github.com/rsaihe/bullethell)
